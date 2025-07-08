@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hany Metwally</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0022FF',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        pink: '#ff5fc0',
+                        blue: '#347eff'
+                    },
+                    transitionDuration: {
+                        'slow': '500ms',
+                        '400': '400ms'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+            cursor: default;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* More transparent Navigation Bar */
+        nav {
+            background-color: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #0022FF, #0066FF);
+            transition: all 0.5s ease;
+        }
+        /* Add this to your style section */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Apply cursor-pointer to all interactive elements */
+.nav-link, .navbar-hany, .btn-primary, .article-card-link, 
+.title-hover, .article-title, .article-title-hover, 
+.read-more-link, .play-icon-container, .gradient-btn,
+.square-box, #backToTop {
+    cursor: pointer;
+}
+/* Add this to your style section */
+input, textarea {
+    height: 48px; /* Fixed height for all inputs */
+    min-height: 48px; /* For textarea to maintain same initial height */
+    transition: none !important; /* Remove any transition effects */
+}
+
+textarea {
+    min-height: 120px; /* Textarea can grow but starts at consistent height */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+/* Remove focus effects that cause movement */
+input:focus, textarea:focus {
+    transform: none !important;
+    box-shadow: none !important;
+}
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 34, 255, 0.7), 0 0 30px rgba(0, 34, 255, 0.5);
+        }
+        
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-card:hover .play-icon {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .social-icon {
+            transition: all 0.5s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            color: #0022FF;
+        }
+        
+        /* Updated gradient transition for contact form */
+        .gradient-btn {
+            transition: all 0.4s ease;
+        }
+        
+        .gradient-btn {
+            background: linear-gradient(to right, #ff5fc0, #347eff);
+        }
+        
+        .gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 34, 255, 0.3);
+        }
+        
+        .square-box {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-image {
+            position: relative;
+            box-shadow: 0 0 40px 20px rgba(0, 34, 255, 0.4);
+        }
+        
+        .nav-link {
+            transition: color 0.5s ease;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin: 0 auto;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #0022FF, #0066FF);
+            border-radius: 3px;
+        }
+        
+        /* LinkedIn icon adjustment */
+        .linkedin-icon {
+            position: relative;
+            left: -10px;
+            font-size: 1.5rem;
+        }
+
+        /* Title hover effect */
+        .title-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .title-hover:hover {
+            color: #0066FF;
+            transform: translateX(5px);
+        }
+        
+        /* Article title without underline */
+        .article-title {
+            transition: all 0.3s ease;
+        }
+        
+        .article-title:hover {
+            color: #0066FF;
+        }
+        
+        /* Zoom-in animation for achievements */
+        .achievement-card {
+            transition: all 0.5s ease;
+            background-color: rgba(0, 34, 255, 0.1);
+            border-left: 4px solid #0022FF;
+        }
+        
+        .achievement-card:hover {
+            transform: scale(1.03);
+            background-color: rgba(0, 34, 255, 0.2);
+        }
+        
+        /* Equal width and height for all achievement icons */
+        .achievement-icon {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Article card link styling */
+        .article-card-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .article-card-link:hover {
+            color: inherit;
+        }
+
+        /* Enhanced play icon hover effect */
+        .play-icon-container:hover .play-icon {
+            transform: scale(1.3);
+            opacity: 1;
+        }
+
+        /* Article title hover effect to match video titles */
+        .article-title-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .article-title-hover:hover {
+            color: #0066FF;
+            transform: translateX(5px);
+        }
+
+        /* Read More underline effect */
+        .read-more-link {
+            position: relative;
+            display: inline-block;
+            transition: all 0.4s ease;
+        }
+        
+        .read-more-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.4s ease;
+        }
+        
+        .read-more-link:hover::after {
+            width: 100%;
+        }
+
+        /* Enhanced gradient focus effect */
+        .gradient-focus {
+            transition: none !important;
+            transform: none !important;
+        }
+        
+        .gradient-focus:focus {
+            background: linear-gradient(#0f172a, #0f172a) padding-box,
+                        linear-gradient(to right, #ff5fc0, #347eff) border-box;
+            border: 2px solid transparent !important;
+            outline: none;
+            box-shadow: none;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+        }
+
+        /* Navbar Hany link without color change */
+        .navbar-hany {
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-hany:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Pointer cursor for clickable elements only */
+        a, button, [onclick], [role="button"] {
+            cursor: pointer;
+        }
+
+        /* Home section scroll adjustment */
+        #home {
+            scroll-margin-top: 80px;
+        }
+
+        /* Contact form input stability */
+        #contactForm input, 
+        #contactForm textarea {
+            transition: none !important;
+            transform: none !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="py-4 px-6 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+           <!-- Update the navigation links -->
+<a href="#home" class="text-2xl font-bold text-white navbar-hany cursor-pointer">
+    <span>Hany</span><span class="text-primary">.</span>
+</a>
+            <div class="hidden md:flex space-x-8 mx-auto">
+                <a href="#home" class="nav-link hover:text-primary cursor-pointer">Home</a>
+                <a href="#about" class="nav-link hover:text-primary">About</a>
+                <a href="#articles" class="nav-link hover:text-primary">Articles</a>
+                <a href="#videos" class="nav-link hover:text-primary">Videos</a>
+                <a href="#contact" class="nav-link hover:text-primary">Contact</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="https://www.linkedin.com/in/hany-metwally-msc-phd-candidate-2ba00769?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-icon text-xl hover:text-primary linkedin-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 px-6 bg-dark min-h-screen flex items-center">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 md:ml-8">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    Hi, I'm <span class="text-primary">Hany</span>
+                    <br><span class="text-primary">Metwally</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6">Well Engineering Instructor</h2>
+                <p class="text-lg md:text-xl mb-8 text-gray-300 leading-relaxed">
+                    Petroleum Engineer with 19+ years of field experience in drilling and workover operations. 
+                    Accredited IADC/IWCF Well Control Instructor (Drilling & Well Intervention).
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#about" id="who-is-hany-btn" class="btn-primary py-3 px-8 rounded-full font-semibold text-center">
+                        Who Is Hany
+                    </a>
+                    <a href="#contact" class="border-2 border-primary py-3 px-8 rounded-full font-semibold text-center hover:bg-primary hover:bg-opacity-10 transition">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden profile-image">
+                    <img src="zzzzz.jpg" 
+                         alt="Hany Metwally" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-primary bg-opacity-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-dark">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white section-title">
+                    About Me
+                </h2>
+                <p class="text-gray-300">Who is Hany Metwally</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <div class="bg-darker p-8 rounded-xl shadow-xl mb-8">
+                        <h3 class="text-2xl font-semibold mb-6 text-white">Professional Background</h3>
+                        <p class="mb-4 text-gray-300">
+                            With a Master's degree in Petroleum Engineering, I've dedicated my career to advancing well control and drilling operations.
+                        </p>
+                        <p class="mb-6 text-gray-300">
+                            My extensive field experience includes key roles at Agiba Petroleum, Neft Energies, and as an instructor at the prestigious Saudi Aramco Well Control School.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="achievement-card p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2 text-white">Specialization</h4>
+                                <p class="text-sm text-gray-300">Drilling & Well Control Operations</p>
+                            </div>
+                            <div class="achievement-card p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2 text-white">Collaborations</h4>
+                                <p class="text-sm text-gray-300">SPE International, PioPetro, Aramco</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-darker p-8 rounded-xl shadow-xl">
+                        <h3 class="text-2xl font-semibold mb-6 text-white">Key Achievements</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start achievement-card p-4 rounded-lg">
+                                <div class="achievement-icon bg-primary rounded-full mr-4 mt-1">
+                                    <i class="fas fa-medal text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">IADC/IWCF Accreditation</h4>
+                                    <p class="text-gray-300 text-sm">Certified Well Control Instructor for both Drilling and Well Intervention</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start achievement-card p-4 rounded-lg">
+                                <div class="achievement-icon bg-primary rounded-full mr-4 mt-1">
+                                    <i class="fas fa-chalkboard-teacher text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">19+ Years Experience</h4>
+                                    <p class="text-gray-300 text-sm">Hands-on field experience in diverse drilling environments</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start achievement-card p-4 rounded-lg">
+                                <div class="achievement-icon bg-primary rounded-full mr-4 mt-1">
+                                    <i class="fas fa-book text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Technical Publications</h4>
+                                    <p class="text-gray-300 text-sm">Authored multiple papers on well control and drilling optimization</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <div class="bg-darker p-8 rounded-xl shadow-xl h-full">
+                        <h3 class="text-2xl font-semibold mb-6 text-white">Personal Information</h3>
+                        <div class="flex items-center mb-6">
+                            <div class="square-box bg-primary bg-opacity-20 rounded-full mr-4">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Email</p>
+                                <p class="font-medium text-white">Wellcontrolsolutions@Outlook.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-6">
+                            <div class="square-box bg-primary bg-opacity-20 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Location</p>
+                                <p class="font-medium text-white">Saudi Arabia, El Khobar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-6">
+                            <div class="square-box bg-primary bg-opacity-20 rounded-full mr-4">
+                                <i class="fas fa-briefcase text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Current Position</p>
+                                <p class="font-medium text-white">Well Control Expert at Aramco, SA</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-6">
+                            <div class="square-box bg-primary bg-opacity-20 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Education</p>
+                                <p class="font-medium text-white">Master's in Petroleum Engineering</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="square-box bg-primary bg-opacity-20 rounded-full mr-4">
+                                <i class="fas fa-certificate text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Status</p>
+                                <p class="font-medium text-white">Accredited Well Control Instructor</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-gray-700">
+                            <h4 class="text-lg font-semibold mb-4 text-white">Connect With Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.linkedin.com/in/hany-metwally-msc-phd-candidate-2ba00769?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="square-box bg-dark rounded-full hover:bg-primary hover:bg-opacity-20 text-2xl">
+                                    <i class="fab fa-linkedin text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Articles -->
+    <section id="articles" class="py-20 px-6 bg-dark">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white section-title">
+                    Technical Articles
+                </h2>
+                <p class="text-gray-300">Explore my technical publications and insights</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <a href="well-control-lesson.html" class="article-card-link bg-darker p-6 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="bg-primary bg-opacity-20 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-oil-well text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white article-title-hover">Well Control Lessons</h3>
+                    <p class="text-gray-400 mb-4">
+                        Comprehensive guide to well control principles, procedures, and best practices based on 19+ years of field experience.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-white">Drilling Operations</span>
+                        <span class="text-white read-more-link">Read More →</span>
+                    </div>
+                </a>
+                
+                <!-- Article 2 -->
+                <a href="drilling-engineering-optimization.html" class="article-card-link bg-darker p-6 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="bg-primary bg-opacity-20 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-tachometer-alt text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white article-title-hover">Drilling Engineering Optimization</h3>
+                    <p class="text-gray-400 mb-4">
+                        Advanced techniques for optimizing drilling operations to improve efficiency and reduce non-productive time.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-white">Optimization</span>
+                        <span class="text-white read-more-link">Read More →</span>
+                    </div>
+                </a>
+                
+                <!-- Article 3 -->
+                <a href="radial-drilling.html" class="article-card-link bg-darker p-6 rounded-xl shadow-lg card-hover transition duration-300">
+                    <div class="bg-primary bg-opacity-20 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-project-diagram text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white article-title-hover">Radial Drilling</h3>
+                    <p class="text-gray-400 mb-4">
+                        Exploring innovative radial drilling techniques for enhanced oil recovery in mature fields.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-white">Innovation</span>
+                        <span class="text-white read-more-link">Read More →</span>
+                    </div>
+                </a>
+                
+                <!-- Article 4 -->
+<a href="Deepwater-Horizon-Incident.html" class="article-card-link bg-darker p-6 rounded-xl shadow-lg card-hover transition duration-300">
+    <div class="bg-primary bg-opacity-20 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+        <i class="fas fa-water text-white"></i>
+    </div>
+    <h3 class="text-xl font-semibold mb-3 text-white article-title-hover">Deepwater Horizon Incident Analysis</h3>
+    <p class="text-gray-400 mb-4">
+        Detailed technical analysis of the Deepwater Horizon incident with lessons for current well control practices.
+    </p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-white">Case Study</span>
+        <span class="text-white read-more-link">Read More →</span>
+    </div>
+</a>
+                
+                <!-- Article 5 -->
+<a href="Automated-Rig-Technology.html" class="article-card-link bg-darker p-6 rounded-xl shadow-lg card-hover transition duration-300">
+    <div class="bg-primary bg-opacity-20 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+        <i class="fas fa-robot text-white"></i>
+    </div>
+    <h3 class="text-xl font-semibold mb-3 text-white article-title-hover">Automated Rig Technology</h3>
+    <p class="text-gray-400 mb-4">
+        The future of drilling operations with automated rig technology and its impact on well control.
+    </p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-white">Technology</span>
+        <span class="text-white read-more-link">Read More →</span>
+    </div>
+</a>
+                
+                <!-- Article 6 -->
+<a href="well-integrity-management.html" class="article-card-link bg-darker p-6 rounded-xl shadow-lg card-hover transition duration-300">
+    <div class="bg-primary bg-opacity-20 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+        <i class="fas fa-shield-alt text-white"></i>
+    </div>
+    <h3 class="text-xl font-semibold mb-3 text-white article-title-hover">Well Integrity Management</h3>
+    <p class="text-gray-400 mb-4">
+        Comprehensive approach to maintaining well integrity throughout the lifecycle of oil and gas wells.
+    </p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-white">Safety</span>
+        <span class="text-white read-more-link">Read More →</span>
+    </div>
+</a>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.linkedin.com/in/hany-metwally-msc-phd-candidate-2ba00769/recent-activity/all/" class="btn-primary py-3 px-8 rounded-full font-semibold inline-block">
+                    See More Technical Articles
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Videos -->
+    <section id="videos" class="py-20 px-6 bg-dark">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white section-title">
+                    YouTube Videos
+                </h2>
+                <p class="text-gray-300">Watch my instructional videos on well engineering</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Video 1 -->
+                <div class="bg-darker rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://i.ytimg.com/vi/DowMnQrcKuE/maxresdefault.jpg" alt="Well Control Principles" class="w-full h-48 object-cover">
+                        <a href="https://www.youtube.com/watch?v=DowMnQrcKuE" target="_blank" class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center play-icon-container">
+                            <div class="play-icon bg-primary bg-opacity-80 rounded-full w-16 h-16 flex items-center justify-center opacity-90 transition duration-300">
+                                <i class="fas fa-play text-white text-xl"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <a href="https://www.youtube.com/watch?v=DowMnQrcKuE" target="_blank" class="text-xl font-semibold mb-2 text-white title-hover block">Well Control Principles and Procedures</a>
+                        <div class="flex items-center text-gray-400 text-sm mb-4">
+                            <span class="mr-4"><i class="fas fa-eye mr-1"></i> 60K views</span>
+                            <span><i class="fas fa-thumbs-up mr-1"></i> 1.3K likes</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Fundamental principles of well control and step-by-step procedures for handling kicks and blowouts.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-400">1:16:49</span>
+                            <span class="text-sm text-gray-400">5 years ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 2 -->
+                <div class="bg-darker rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://i.ytimg.com/vi/a9KK5Ocq_rI/maxresdefault.jpg" alt="Casing While Drilling" class="w-full h-48 object-cover">
+                        <a href="https://www.youtube.com/watch?v=a9KK5Ocq_rI" target="_blank" class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center play-icon-container">
+                            <div class="play-icon bg-primary bg-opacity-80 rounded-full w-16 h-16 flex items-center justify-center opacity-90 transition duration-300">
+                                <i class="fas fa-play text-white text-xl"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <a href="https://www.youtube.com/watch?v=a9KK5Ocq_rI" target="_blank" class="text-xl font-semibold mb-2 text-white title-hover block">Casing While Drilling</a>
+                        <div class="flex items-center text-gray-400 text-sm mb-4">
+                            <span class="mr-4"><i class="fas fa-eye mr-1"></i> 2.8K views</span>
+                            <span><i class="fas fa-thumbs-up mr-1"></i> 63 likes</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Innovative casing while drilling and its applications in modern drilling operations.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-400">1:28:29</span>
+                            <span class="text-sm text-gray-400">2 years ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="bg-darker rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://i.ytimg.com/vi/G2NccVOh0Rg/maxresdefault.jpg" alt="Managed Pressure Drilling" class="w-full h-48 object-cover">
+                        <a href="https://www.youtube.com/watch?v=G2NccVOh0Rg" target="_blank" class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center play-icon-container">
+                            <div class="play-icon bg-primary bg-opacity-80 rounded-full w-16 h-16 flex items-center justify-center opacity-90 transition duration-300">
+                                <i class="fas fa-play text-white text-xl"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <a href="https://www.youtube.com/watch?v=G2NccVOh0Rg" target="_blank" class="text-xl font-semibold mb-2 text-white title-hover block">Managed Pressure Drilling Innovation</a>
+                        <div class="flex items-center text-gray-400 text-sm mb-4">
+                            <span class="mr-4"><i class="fas fa-eye mr-1"></i> 2.2K views</span>
+                            <span><i class="fas fa-thumbs-up mr-1"></i> 55 likes</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Cutting-edge managed pressure drilling techniques and their impact on well control and efficiency.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-400">1:26:53</span>
+                            <span class="text-sm text-gray-400">2 years ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 4 -->
+                <div class="bg-darker rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://i.ytimg.com/vi/CphqdEh6MUA/maxresdefault.jpg" alt="Well Intervention" class="w-full h-48 object-cover">
+                        <a href="https://www.youtube.com/watch?v=CphqdEh6MUA" target="_blank" class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center play-icon-container">
+                            <div class="play-icon bg-primary bg-opacity-80 rounded-full w-16 h-16 flex items-center justify-center opacity-90 transition duration-300">
+                                <i class="fas fa-play text-white text-xl"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <a href="https://www.youtube.com/watch?v=CphqdEh6MUA" target="_blank" class="text-xl font-semibold mb-2 text-white title-hover block">Well Intervention: Part#1</a>
+                        <div class="flex items-center text-gray-400 text-sm mb-4">
+                            <span class="mr-4"><i class="fas fa-eye mr-1"></i> 3.4K views</span>
+                            <span><i class="fas fa-thumbs-up mr-1"></i> 86 likes</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            First part of comprehensive well intervention series covering tools, techniques, and safety considerations.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-400">1:01:55</span>
+                            <span class="text-sm text-gray-400">3 years ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 5 -->
+                <div class="bg-darker rounded-xl overflow-hidden shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://i.ytimg.com/vi/jMIRG7npw5I/maxresdefault.jpg" alt="Well Intervention" class="w-full h-48 object-cover">
+                        <a href="https://www.youtube.com/watch?v=jMIRG7npw5I" target="_blank" class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center play-icon-container">
+                            <div class="play-icon bg-primary bg-opacity-80 rounded-full w-16 h-16 flex items-center justify-center opacity-90 transition duration-300">
+                                <i class="fas fa-play text-white text-xl"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        <a href="https://www.youtube.com/watch?v=jMIRG7npw5I" target="_blank" class="text-xl font-semibold mb-2 text-white title-hover block">Well Intervention: Part#2</a>
+                        <div class="flex items-center text-gray-400 text-sm mb-4">
+                            <span class="mr-4"><i class="fas fa-eye mr-1"></i> 1.6K views</span>
+                            <span><i class="fas fa-thumbs-up mr-1"></i> 33 likes</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Second part of well intervention series focusing on advanced techniques and case studies.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-400">2:13:04</span>
+                            <span class="text-sm text-gray-400">3 years ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-dark">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white section-title">
+                    Get In Touch
+                </h2>
+                <p class="text-gray-300">Feel free to reach out to me using the form below or through my contact information</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <div class="bg-darker p-8 rounded-xl shadow-xl h-full">
+                        <h3 class="text-2xl font-semibold mb-6 text-white">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="square-box bg-primary bg-opacity-20 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1 text-white">Email</h4>
+                                    <p class="text-gray-300">Wellcontrolsolutions@Outlook.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="square-box bg-primary bg-opacity-20 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1 text-white">Phone</h4>
+                                    <p class="text-gray-300">+966 55 636 7120</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="square-box bg-primary bg-opacity-20 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1 text-white">Location</h4>
+                                    <p class="text-gray-300">Saudi Arabia, El Khobar</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-gray-700">
+                            <h4 class="text-lg font-semibold mb-4 text-white">Follow Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.linkedin.com/in/hany-metwally-msc-phd-candidate-2ba00769?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="square-box bg-dark rounded-full hover:bg-primary hover:bg-opacity-20 text-2xl">
+                                    <i class="fab fa-linkedin text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-darker p-8 rounded-xl shadow-xl h-full">
+                        <h3 class="text-2xl font-semibold mb-6 text-white">Send Me a Message</h3>
+                        
+                        <form id="contactForm" action="https://formspree.io/f/Wellcontrolsolutions@Outlook.com" method="POST">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-300 mb-2">Your Name</label>
+                                <input type="text" name="name" id="name" class="w-full bg-dark border border-gray-700 rounded-lg py-3 px-4 text-white gradient-focus focus:outline-none" placeholder="Hany Metwally">
+                                <p id="nameError" class="text-red-500 text-sm mt-1 hidden">Please enter your name.</p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-300 mb-2">Email Address</label>
+                                <input type="email" name="_replyto" id="email" class="w-full bg-dark border border-gray-700 rounded-lg py-3 px-4 text-white gradient-focus focus:outline-none" placeholder="your@email.com">
+                                <p id="emailError" class="text-red-500 text-sm mt-1 hidden">Please enter a valid email.</p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-300 mb-2">Subject</label>
+                                <input type="text" name="_subject" id="subject" class="w-full bg-dark border border-gray-700 rounded-lg py-3 px-4 text-white gradient-focus focus:outline-none" placeholder="Subject of your message">
+                                <p id="subjectError" class="text-red-500 text-sm mt-1 hidden">Please enter a subject.</p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-300 mb-2">Your Message</label>
+                                <textarea name="message" id="message" rows="5" class="w-full bg-dark border border-gray-700 rounded-lg py-3 px-4 text-white gradient-focus focus:outline-none" placeholder="Type your message here..."></textarea>
+                                <p id="messageError" class="text-red-500 text-sm mt-1 hidden">Please enter your message.</p>
+                            </div>
+                            
+                            <button type="submit" class="gradient-btn w-full py-3 px-6 rounded-lg font-semibold">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 bg-darker border-t border-gray-800">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-500">© 2025 Hany Metwally. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 square-box">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('#home').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact Form Validation
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            let isValid = true;
+            
+            // Check Name
+            const name = document.getElementById('name');
+            const nameError = document.getElementById('nameError');
+            if (!name.value.trim()) {
+                nameError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                nameError.classList.add('hidden');
+            }
+
+            // Check Email
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim() || !emailRegex.test(email.value)) {
+                emailError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                emailError.classList.add('hidden');
+            }
+
+            // Check Subject
+            const subject = document.getElementById('subject');
+            const subjectError = document.getElementById('subjectError');
+            if (!subject.value.trim()) {
+                subjectError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                subjectError.classList.add('hidden');
+            }
+
+            // Check Message
+            const message = document.getElementById('message');
+            const messageError = document.getElementById('messageError');
+            if (!message.value.trim()) {
+                messageError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                messageError.classList.add('hidden');
+            }
+
+            // Prevent form submission if validation fails
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
